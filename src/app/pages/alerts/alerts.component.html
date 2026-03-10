@@ -1,0 +1,31 @@
+<section class="page">
+  <header class="page-header">
+    <h1>Alerts</h1>
+    <p>Table-style layout to browse recent alerts.</p>
+  </header>
+
+  <div class="card">
+    <div class="table-header">
+      <div>Alert</div>
+      <div>Severity</div>
+      <div>Status</div>
+      <div>Updated</div>
+    </div>
+
+    <div class="table-row" *ngFor="let alert of [1, 2, 3, 4, 5]">
+      <div class="cell primary">
+        CPU utilization high on `api-gateway-0{{ alert }}`
+      </div>
+      <div class="cell">
+        <span class="badge badge--high">High</span>
+      </div>
+      <div class="cell">
+        <span class="badge badge--open">Open</span>
+      </div>
+      <div class="cell">
+        {{ 5 + alert }} minutes ago
+      </div>
+    </div>
+  </div>
+</section>
+
