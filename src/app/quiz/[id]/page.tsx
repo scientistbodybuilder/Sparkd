@@ -6,9 +6,10 @@ import { doc, getDoc, addDoc, serverTimestamp, updateDoc } from "firebase/firest
 import { firestore, firebaseCollections, type Quiz } from "@/lib/firebase";
 import { useAuth } from "@/lib/auth-context";
 import bg from '../../assets/backgrounds/game_bg_1.jpg'
-import PauseIcon from '@mui/icons-material/Pause';
-import VolumeUpIcon from '@mui/icons-material/VolumeUp';
-import RecordVoiceOverIcon from '@mui/icons-material/RecordVoiceOver';
+// import PauseIcon from '@mui/icons-material/Pause';
+// import VolumeUpIcon from '@mui/icons-material/VolumeUp';
+// import RecordVoiceOverIcon from '@mui/icons-material/RecordVoiceOver';
+import { Pause, VolumeUp, RecordVoiceOver } from '@mui/icons-material';
 
 import SpriteAnimator , { SpriteAnimatorHandle} from "@/app/animations/SpriteAnimator";
 //services
@@ -160,7 +161,7 @@ export default function QuizPlayPage() {
 
   if (loading || !user || !quiz) {
     return (
-      <div className="flex min-h-screen items-center justify-center text-slate-200">
+      <div className="flex flex-1 items-center justify-center bg-slate-950 text-slate-200">
         Loading quiz...
       </div>
     );
@@ -235,12 +236,12 @@ export default function QuizPlayPage() {
         <div className='flex items-center justify-center gap-3 h-auto'>
           <button onClick={() => speak(current!)} className="bg-yellow-700 hover:bg-yellow-600 cursor-pointer border-slate-600 hover:border-slate-500 py-2 px-4 rounded-xl flex items-center gap-2">
             <p className='font-bold text-sm md:text-base text-white'>READ</p>
-            <VolumeUpIcon  />
+            <VolumeUp  />
           </button>
 
           <button onClick={() => setOpenAudioModal(true)} className="bg-green-800 hover:bg-green-600 cursor-pointer border-slate-600 hover:border-slate-500 py-2 px-4 rounded-xl flex items-center gap-2">
              <p className='font-bold text-sm md:text-base text-white'>ANSWER</p>
-             <RecordVoiceOverIcon />
+             <RecordVoiceOver />
           </button>
 
         <div className="flex items-center gap-3">
@@ -293,7 +294,7 @@ export default function QuizPlayPage() {
             audioBGRef.current.pause()
           }
           }}>
-          <PauseIcon className='text-white cursor-pointer' fontSize="large" />
+          <Pause className='text-white cursor-pointer' fontSize="large" />
         </div>
 
         {quiz && (<div className='w-full absolute bottom-0 h-20 flex items-center justify-between border-t bg-slate-900 border-slate-800 px-6 py-6'>

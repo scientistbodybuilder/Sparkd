@@ -78,10 +78,21 @@ export type ScoreEntry = {
   createdAt: Timestamp;
 };
 
+export type Badge = {
+  id: string;
+  code: string;
+  name: string;
+  description: string;
+  icon: string;
+  earnedAt: Timestamp;
+};
+
 export const firebaseCollections = {
   userQuizzes: (userId: string) =>
     collection(firestore, "users", userId, "quizzes"),
   userScores: (userId: string) =>
     collection(firestore, "users", userId, "scores"),
+  userBadges: (userId: string) =>
+    collection(firestore, "users", userId, "badges"),
 };
 

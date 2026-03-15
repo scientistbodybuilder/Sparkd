@@ -58,7 +58,7 @@ export default function QuizResultsPage() {
 
   if (loading || !user || !quiz || !latestScore) {
     return (
-      <div className="flex min-h-screen items-center justify-center text-slate-200">
+      <div className="flex flex-1 items-center justify-center bg-slate-950 text-slate-200">
         Loading results...
       </div>
     );
