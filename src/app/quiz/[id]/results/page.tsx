@@ -70,14 +70,14 @@ export default function QuizResultsPage() {
       : 0;
 
   return (
-    <div className="flex min-h-screen flex-col bg-slate-950 text-slate-50">
+    <div className="flex h-[calc(100vh-4rem)] flex-col bg-slate-950 text-slate-50">
       <main className="mx-auto flex w-full max-w-3xl flex-1 flex-col px-4 py-10">
         <div className="mb-8 space-y-2 text-center">
           <h1 className="text-lg font-semibold">Results</h1>
           <p className="text-sm text-slate-300">{quiz.title}</p>
         </div>
 
-        <section className="mb-8 flex flex-col items-center gap-4">
+        <section className="mb-4 flex flex-col items-center gap-4">
           <div className="flex items-baseline gap-3">
             <span className="text-4xl font-semibold text-emerald-400">
               {latestScore.score}/{latestScore.total}
@@ -92,11 +92,12 @@ export default function QuizResultsPage() {
           </div>
         </section>
 
-        <section className="mb-10 space-y-4 text-sm">
+        <section className="mb-4 space-y-4 text-sm">
           <h2 className="text-xs font-medium uppercase tracking-wide text-slate-400">
             Question breakdown
           </h2>
-          <div className="space-y-3">
+          <div className='h-[50dvh] rounded-xl overflow-y-auto w-auto'>
+              <div className="space-y-3">
             {quiz.questions.map((q: AnswerBreakdown, idx: number) => (
               <div
                 key={idx}
@@ -130,9 +131,11 @@ export default function QuizResultsPage() {
               </div>
             ))}
           </div>
+          </div>
+          
         </section>
 
-        <div className="mt-auto flex justify-center gap-3 text-xs">
+        <div className="mt-4 flex justify-center gap-3 text-xs">
           <button
             onClick={() => router.push(`/quiz/${quiz.id}`)}
             className="rounded-full bg-slate-100 px-5 py-2 font-medium text-slate-900 hover:bg-white"

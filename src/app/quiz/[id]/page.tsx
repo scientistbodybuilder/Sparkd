@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { doc, getDoc, addDoc, serverTimestamp } from "firebase/firestore";
+import { doc, getDoc, addDoc, serverTimestamp, updateDoc } from "firebase/firestore";
 import { firestore, firebaseCollections, type Quiz } from "@/lib/firebase";
 import { useAuth } from "@/lib/auth-context";
 import bg from '../../assets/backgrounds/game_bg_1.jpg'
@@ -64,6 +64,34 @@ export default function QuizPlayPage() {
     }
   };
 
+  const speak = (q: LocalQuestion) => {
+    let text = q.question;
+    q.options.forEach((option, index) => {
+      let letter;
+      switch (index) {
+        case 0:
+          letter = 'A'
+          break
+        case 1:
+          letter = 'B'
+          break
+        case 2:
+          letter = 'C'
+          break
+        case 3:
+          letter = 'D'
+          break
+      }
+      text += ` Option ${letter}: ${option}`;
+    });
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.rate = 1;  // Speed of speech (1 is normal, 0.5 is slower, 2 is faster)
+    utterance.pitch = 1; // Pitch of the voice (0 is low, 2 is high)
+    utterance.volume = 1;
+    window.speechSynthesis.speak(utterance);
+  }
+
   const onConfirm = async (ans: number) => {
     setOpenAudioModal(false)
     console.log('answer received from audio: ',ans)
@@ -76,6 +104,9 @@ export default function QuizPlayPage() {
 
   const unPause = () => {
     setOpenPauseModal(false)
+    if (audioBGRef.current) {
+      audioBGRef.current.play()
+    }
   }
 
   const pauseSave = async () => {
@@ -91,10 +122,9 @@ export default function QuizPlayPage() {
   useEffect(() => {
     audioHurtRef.current = new Audio('/sounds/enemy_hurt_sound.mp3');
     audioSlashRef.current = new Audio('/sounds/enemy_slash_sound.mp3');
-    audioBGRef.current = new Audio('/sounds/bg_sound.mp3');
+    audioBGRef.current = new Audio('/sounds/bg-sound.mp3');
     audioBGRef.current.loop = true
-    audioBGRef.current.volume = 0.5
-    audioBGRef.current.play()
+    audioBGRef.current.volume = 0.3
   }, []);
 
   useEffect(() => {
@@ -175,14 +205,12 @@ export default function QuizPlayPage() {
       await saveQuiz(user.uid, quiz, score, quiz.questions.length);
       // Update lastScore on quiz doc
       const quizRef = doc(firestore, "users", user.uid, "quizzes", quiz.id);
-      await getDoc(quizRef).then(async (snap) => {
-        if (snap.exists()) {
-          await snap.ref.update({
-            lastScore: isCorrect ? score + 1 : score,
-          });
-        }
-      });
-
+      await updateDoc(quizRef, {
+          lastScore: isCorrect ? score + 1 : score,
+      })
+      if (audioBGRef.current) {
+        audioBGRef.current.pause()
+      }
       router.push(`/quiz/${quiz.id}/results`);
       return;
     }
@@ -205,7 +233,7 @@ export default function QuizPlayPage() {
         </div>
 
         <div className='flex items-center justify-center gap-3 h-auto'>
-          <button className="bg-yellow-700 hover:bg-yellow-600 cursor-pointer border-slate-600 hover:border-slate-500 py-2 px-4 rounded-xl flex items-center gap-2">
+          <button onClick={() => speak(current!)} className="bg-yellow-700 hover:bg-yellow-600 cursor-pointer border-slate-600 hover:border-slate-500 py-2 px-4 rounded-xl flex items-center gap-2">
             <p className='font-bold text-sm md:text-base text-white'>READ</p>
             <VolumeUpIcon  />
           </button>
@@ -259,7 +287,12 @@ export default function QuizPlayPage() {
         <div className='h-auto w-11/12 flex items-center justify-center mt-48 lg:mt-40 xl:mt-28'>
             <SpriteAnimator ref={bRef} fps={12} end={()=>setOpenEndModal(true)}/>
         </div>
-        <div className='absolute bottom-24 right-4' onClick={()=>setOpenPauseModal(true)}>
+        <div className='absolute bottom-24 right-4' onClick={()=>{
+          setOpenPauseModal(true)
+          if (audioBGRef.current) {
+            audioBGRef.current.pause()
+          }
+          }}>
           <PauseIcon className='text-white cursor-pointer' fontSize="large" />
         </div>
 

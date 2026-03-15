@@ -60,7 +60,7 @@ export default function ScoresPage() {
   const groups = Object.entries(grouped);
 
   return (
-    <div className="flex min-h-screen flex-col bg-slate-950 text-slate-50">
+    <div className="flex h-[calc(100vh-4rem)] flex-col bg-slate-950 text-slate-50">
       <main className="mx-auto flex w-full max-w-4xl flex-1 flex-col px-4 py-8">
         <div className="mb-6 space-y-1">
           <h1 className="text-lg font-semibold">Score history</h1>

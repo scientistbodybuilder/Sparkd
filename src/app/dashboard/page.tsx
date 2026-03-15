@@ -54,7 +54,7 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col bg-slate-950 text-slate-50">
+    <div className="flex h-[calc(100vh-4rem)] flex-col bg-slate-950 text-slate-50">
 
       <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-6 px-4 py-6">
         <div className="flex items-center justify-between">

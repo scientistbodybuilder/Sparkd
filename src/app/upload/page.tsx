@@ -63,11 +63,11 @@ export default function UploadPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-slate-950 px-4">
+    <div className="flex h-[calc(100vh-4rem)] items-center justify-center bg-slate-950 px-4">
       <div className="w-full max-w-lg rounded-2xl border border-slate-800 bg-slate-900/60 p-8 shadow-xl">
         <h1 className="mb-2 text-lg font-semibold text-white">Upload PDF</h1>
         <p className="mb-6 text-xs text-slate-300">
-          We&apos;ll send this PDF to Gemini to generate a 10-question quiz.
+          We&apos;ll send this PDF to Gemini to generate quiz.
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
