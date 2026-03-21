@@ -7,6 +7,7 @@ import {
   doc,
   setDoc,
   addDoc,
+  deleteDoc,
   serverTimestamp,
 } from "firebase/firestore";
 import { PDFParse } from "pdf-parse";
@@ -169,5 +170,16 @@ export const saveQuiz = async (
     return {
       success: false,
     };
+  }
+};
+
+export const deleteQuiz = async (userId: string, quizId: string) => {
+  try {
+    const quizRef = doc(firestore, "users", userId, "quizzes", quizId);
+    await deleteDoc(quizRef);
+    return { success: true };
+  } catch (err) {
+    console.error("Error deleting quiz: ", err);
+    return { success: false };
   }
 };

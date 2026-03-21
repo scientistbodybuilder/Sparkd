@@ -27,6 +27,7 @@ Each question MUST:
 - Be clear and focused on key concepts from the text.
 - Have exactly 4 answer options.
 - Specify which option index (0-3) is correct.
+- Each question must be directly answerable from the text provided.
 - Adapt difficulty based on the specified comprehension level: ${comprehensionLevel}.
 
 Return STRICTLY valid JSON with this TypeScript shape:

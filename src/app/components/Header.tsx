@@ -52,7 +52,7 @@ const Header = () => {
   return (
     <header className="relative flex h-16 w-full items-center justify-between border-b border-slate-800 bg-slate-950 px-4 py-4 box-border md:px-6">
       <div className="flex items-center">
-        <Link href="/dashboard" className="text-lg font-semibold text-white md:text-xl">
+        <Link href="/dashboard" className="text-lg font-bold text-white md:text-xl">
           Sparkd
         </Link>
       </div>

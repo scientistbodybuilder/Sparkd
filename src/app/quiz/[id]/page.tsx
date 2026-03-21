@@ -101,6 +101,9 @@ export default function QuizPlayPage() {
 
   const onCancel = () => {
     setOpenAudioModal(false)
+    if (audioBGRef.current) {
+      audioBGRef.current.play()
+    }
   }
 
   const unPause = () => {
@@ -239,7 +242,11 @@ export default function QuizPlayPage() {
             <VolumeUp  />
           </button>
 
-          <button onClick={() => setOpenAudioModal(true)} className="bg-green-800 hover:bg-green-600 cursor-pointer border-slate-600 hover:border-slate-500 py-2 px-4 rounded-xl flex items-center gap-2">
+          <button onClick={() => {
+            setOpenAudioModal(true)
+            if (audioBGRef.current) {
+              audioBGRef.current.pause()
+            }}} className="bg-green-800 hover:bg-green-600 cursor-pointer border-slate-600 hover:border-slate-500 py-2 px-4 rounded-xl flex items-center gap-2">
              <p className='font-bold text-sm md:text-base text-white'>ANSWER</p>
              <RecordVoiceOver />
           </button>

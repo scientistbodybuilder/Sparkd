@@ -39,10 +39,10 @@ export default function Home() {
 
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-slate-950 px-4">
+    <div className="flex min-h-screen items-center justify-center bg-slate-950 px-4 relative">
       <div className="w-full max-w-md rounded-2xl border border-slate-800 bg-slate-900/60 p-8 shadow-xl">
         <div className="mb-8 space-y-2 text-center">
-          <h1 className="text-2xl font-semibold tracking-tight text-white">
+          <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-white">
             Sparkd
           </h1>
           <p className="text-sm text-slate-300">
@@ -71,6 +71,8 @@ export default function Home() {
             <SignUp />
           )}
         </div>
+
+        
         
         {!loading && !user && (
           <p className="mt-4 text-center text-xs text-slate-400">
@@ -78,6 +80,8 @@ export default function Home() {
           </p>
         )}
       </div>
+      <img src='/animations/Enemy_wave.png' className='absolute bottom-0 left-0 w-96 h-96 object-cover'/>
+      <img src='/animations/Enemy_wave_2.png' className='absolute bottom-0 right-0 w-96 h-96 object-cover'/>
     </div>
   );
 }

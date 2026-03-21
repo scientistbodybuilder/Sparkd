@@ -14,6 +14,7 @@ import {
   orderBy,
   query,
 } from "firebase/firestore";
+import { deleteQuiz }  from '../services/quiz.services'
 
 export default function DashboardPage() {
   const { user, loading, signOutUser } = useAuth();
@@ -118,6 +119,20 @@ export default function DashboardPage() {
                   >
                     Play
                   </Link>
+                  <button
+                    className="rounded-full cursor-pointer bg-red-800 px-4 py-2 font-medium text-white hover:bg-red-700"
+                    onClick={async () => {
+                      const result = await deleteQuiz(user.uid, quiz.id);
+                      if (result.success) {
+                        // Remove the quiz from the UI
+                        setQuizzes(quizzes.filter((q) => q.id !== quiz.id));
+                      } else {
+                        console.error("Failed to delete quiz");
+                      }
+                    }}
+                  >
+                    Delete
+                  </button>
                 </div>
               </article>
             ))
