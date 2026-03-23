@@ -14,8 +14,8 @@ const Footer = () => {
       <span>
         Sparkd · Turn your PDFs into gamified quizzes.
       </span>
-      <img src='/animations/Enemy_wave.png' className='absolute bottom-0 left-0 w-96 h-96 object-cover'/>
-      <img src='/animations/Enemy_wave_2.png' className='absolute bottom-0 right-0 w-96 h-96 object-cover'/>
+      {/* <img src='/animations/Enemy_wave.png' className='absolute bottom-0 left-0 w-96 h-96 object-cover'/>
+      <img src='/animations/Enemy_wave_2.png' className='absolute bottom-0 right-0 w-96 h-96 object-cover'/> */}
     </footer>
   );
 };

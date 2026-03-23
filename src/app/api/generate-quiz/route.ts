@@ -14,8 +14,8 @@ export async function POST(req: NextRequest) {
     const comprehensionLevel = formData.get("comprehensionLevel") as string | null;
     const fileName = file.name
 
-    console.log('file:', file);
-    console.log('comprehensionLevel:', comprehensionLevel);
+    // console.log('file:', file);
+    // console.log('comprehensionLevel:', comprehensionLevel);
 
     if (!file || !comprehensionLevel) {
       return NextResponse.json(
@@ -38,7 +38,7 @@ export async function POST(req: NextRequest) {
     const buffer = Buffer.from(arrayBuffer)
     console.log('got thhe buffer')
     const text = await parsePdf(buffer)
-    console.log('got the text extracted: ',text)
+    // console.log('got the text extracted: ',text)
     console.log('calling gemini now')
     const questions = await generateQuizFromPdfText(text,comprehensionLevel);
     if (!questions) {
@@ -47,7 +47,7 @@ export async function POST(req: NextRequest) {
         { status: 500 }
       );
     }
-    console.log('created the questions: ',questions)
+    // console.log('created the questions: ',questions)
     const quizzesRef = firebaseCollections.userQuizzes(userId);
     const quizId = doc(quizzesRef).id;
 

@@ -54,7 +54,7 @@ ${text.slice(0, 12000)}
     contents:  prompt 
   });
   const responseText = result.text;
-  console.log('gemini repsonse text: ', responseText)
+  // console.log('gemini repsonse text: ', responseText)
   if (responseText) {
     const parsed = JSON.parse(responseText);
     const questions: GeneratedQuizQuestion[] = (parsed as any).questions.map(
