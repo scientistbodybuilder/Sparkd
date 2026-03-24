@@ -1,6 +1,6 @@
 ## Sparkd
 
-Sparkd is a gamified quiz app that turns your PDFs into interactive battles. Upload a PDF, let the system generate questions, and play through a quiz with health bars, sound effects, and animated enemies while your progress and achievements are tracked in your profile.
+Sparkd is a gamified quiz app that turns your PDFs into interactive battles. Upload a PDF, let the system generate questions, and play through a quiz with health bars, sound effects, and animated enemies while your progress and achievements are tracked in your profile. Check it out here https://sparkd-gamma.vercel.app/.
 
 ### Core features
 
